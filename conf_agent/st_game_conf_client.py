@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-__author__ = 'verne'
 
 import sys,os,time,atexit
 import subprocess
