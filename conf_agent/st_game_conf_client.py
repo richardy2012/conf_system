@@ -28,10 +28,6 @@ _________________________________________________________________________
  @desc script
  To Sync the st game cpp application config file
     from st_game_conf_center.
-
- @get script
- We well install this script by wget from :
- wget -P /data/cmd http://115.29.203.180/zookeeper/st_game_conf_client.py
 _________________________________________________________________________
 """
 #################################################################################
