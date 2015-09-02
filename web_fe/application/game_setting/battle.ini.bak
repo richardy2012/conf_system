@@ -1,0 +1,66 @@
+[general]
+io_thread_size    = 1
+battle_thread_size= 4
+logpath           = /data/logs/
+luapath           = /data/lua/
+language          = En
+
+[battle_server]
+ip                = [replace_bBindIP_1]
+port              = [replace_bBindPort_1]
+accept_queue_size = 250
+
+io_thread_size    = 8
+work_thread_init  = 8
+work_thread_high  = 32
+work_thread_load  = 500
+
+handler_pool_init = 100
+handler_pool_low  = 0
+handler_pool_high = 500
+handler_pool_inc  = 50
+handler_pool_max  = 5000
+
+read_buffer_size  = 10240
+write_buffer_size = 10240
+session_timeout   = 0
+io_timeout        = 60
+
+[battle_balancer]
+ip                = 127.0.0.1
+port              = [replace_bbBindPort_2]
+read_buffer_size  = 1024
+write_buffer_size = 1024
+session_timeout   = 0
+io_timeout        = 60
+retry_timeout     = 30
+keepalive_timeout = 30
+
+[thrift_phpservice]
+type              = http
+address           = http://PHP-SERVER:8784/main.php?stream=
+port              = 9090
+connect_timeout   = 10
+receive_timeout   = 10
+send_timeout      = 10
+read_buffer_size  = 10240
+write_buffer_size = 10240
+pool_init         = 4
+pool_low          = 0
+pool_high         = 8
+pool_inc          = 2
+pool_max          = 16
+
+[monitor]
+ip                = 127.0.0.1
+port              = 9010
+read_buffer_size  = 1024
+write_buffer_size = 1024
+session_timeout   = 0
+io_timeout        = 60
+retry_timeout     = 30
+keepalive_timeout = 30
+
+[redis]
+ip                = REDIS-SYSDB-SERVER
+port              = 6379

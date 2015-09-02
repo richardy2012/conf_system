@@ -1,0 +1,29 @@
+<?php  if ($page_info['page_count'] > 1) :?>
+<div class="page mtr10">
+  <a class="stat"><?php echo $lang['page_total'] ?> <?php  echo $page_info['item_count']; ?> <?php echo $lang['page_total_intro'] ?></a>
+    <?php  if ($page_info['prev_link']): ?>
+  <a class="former" href="<?php  echo $page_info['prev_link']; ?>"> </a>
+    <?php  else:?>
+  <span class="formerNull"></span>
+    <?php  endif;?>
+    <?php  if  ($page_info['first_link']) :?>
+ <a class="page_link" href="<?php  echo $page_info['first_link'] ?>">1&nbsp;<?php  echo $page_info['first_suspen'] ?></a>
+ <?php  endif;?>
+  <?php  foreach ($page_info['page_links'] as $page=>$link):?>
+  <?php  if ($page_info['curr_page'] == $page):?>
+  <a class="page_hover" href="<?php echo $link; ?>"><?php echo $page;?></a>
+  <?php  else:?>
+  <a class="page_link" href="<?php echo $link;?>"><?php echo $page;?></a>
+  <?php  endif;?>
+  <?php  endforeach;?>
+  <?php  if ($page_info['last_link']): ?>
+  <a class="page_link" href="<?php echo $page_info['last_link']?>"><?php  echo $page_info['last_suspen']?>&nbsp;<?php  echo $page_info['page_count'];?></a>
+  <?php  endif?>
+  <a class="nonce"><?php echo $page_info['curr_page'];?> / <?php echo $page_info['page_count'];?></a>
+  <?php  if ($page_info['next_link']):?>
+  <a class="down" href="<?php echo $page_info['next_link'];?>"><?php echo $lang['next_page'];?></a>
+  <?php  else:?>
+  <span class="downNull"><?php echo $lang['next_page'];?></span>
+  <?php  endif;?>
+</div>
+<?php  endif;?>

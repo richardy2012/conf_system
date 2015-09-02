@@ -1,0 +1,84 @@
+public function check_event_url()
+{
+    $url = $_POST['event_url'] ? trim($_POST['event_url']) : null;
+    $id = empty($_GET['id']) ? 0 : intval($_GET['id']);
+    if(!$url)
+    {
+        echo json_encode(false);
+        return;
+    }
+    $e_mod = & m('free_events');
+    if(!$e_mod->unique_url($url,$id))
+    {
+        echo json_encode(false);return;
+    }
+    echo json_encode(true);return;
+}
+
+
+
+data:{
+                            load_balance_host_id:function(){
+                                return $("#load_balance_host_id").val();
+                            },
+                            id:l_id
+                        }
+
+                        
+    public function unique_url($url,$event_id = 0)
+    {
+        $conditions = "event_url = '{$url}'";
+        $event_id && $conditions.=" AND event_id <> {$event_id}";
+        return count($this->find(array('conditions'=>$conditions))) == 0;
+    }
+
+
+
+        public function editPush(){
+        //EDIT PUSH MESSAGE
+        if(!$id = intval($_GET['id'])){
+            showmsg( $this->MyLang['param_error'] );die;
+        }
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $this->load->model('server_mod');
+            $data = $this->game_push_mod->get_one($id);
+            $data['servers'] = $this->server_mod->getServersList($this->currentUserHaveServers_str);
+            $this->view('push.form.php',$data);
+        }else{
+            $data['id'] = $id;
+            $data['content'] = $_POST['content'];
+            $data['position'] = $_POST['position'];
+            $data['start_time'] = isset($_POST['start_time']) && !empty($_POST['start_time']) ? $_POST['start_time'] : '';
+            $data['end_time'] = isset($_POST['end_time']) && !empty($_POST['end_time']) ? $_POST['end_time'] : '';
+            $data['position'] = $_POST['position'];
+            $data['status'] = isset($_POST['status']) ? intval($_POST['status']) : 1;
+            $data['sort'] = isset($_POST['sort']) ? intval($_POST['sort']) : 255;
+            //服务器多选 join 处理
+            $pushTo = $this->organizePushServerId();
+            $data['push_to_server_id'] = $this->organizePushServerId();
+            unset($data['push_to_server_id']);
+            $insert_res = $this->game_push_mod->update($id,$data);
+            // SUBMIT TO WEBSERVICE
+//            echo "SUBMIT TO WEBSERVICE";
+//            print_a($data);
+            $data['gameOperator'] = 'All';
+            $this->load->model('game_soap_mod');
+
+//            print_a(($data));
+            $_res = $this->game_soap_mod->sendInfo($data,$pushTo,'sendMessage');
+//            var_dump($_res);
+//            exit;
+            if($_res['code'] == '2'){
+                showmsg('WebService ERROR: '.$_res['msg']);
+            }
+            if($insert_res && $_res['code'] == 1){
+                $link[0]['link_url'] = 'index.php?app=game&act=push';
+                $link[0]['link_name'] = $this->MyLang['back_list'];
+                $link[1]['link_url'] = 'index.php?app=game&act=addPush';
+                $link[1]['link_name'] = $this->MyLang['send_continue'];
+                showmsg($this->MyLang['save_success'], $link);
+            }else{
+                showmsg($this->MyLang['save_failed']);
+            }
+        }
+    }

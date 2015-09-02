@@ -1,0 +1,45 @@
+<chart palette='2' caption='mount' subCaption='data'  showValues='0' rotateYAxisName='0'
+       showNames='1' decimalPrecision='0' formatNumberScale='0' PYAxisName='ZY' SYAxisName='YY'>
+    <categories>
+        <category label='1' />
+        <category label='2' />
+        <category label='3' />
+        <category label='4' />
+        <category label='5' />
+        <category label='6' />
+        <category label='7' />
+        <category label='8' />
+        <category label='9' />
+        <category label='10' />
+        <category label='11' />
+        <category label='12' />
+    </categories>
+    <dataset seriesName='ZY' renderAs='Area' parentYAxis='P'>
+        <set value='3242'/>
+        <set value='3171'/>
+        <set value='700'/>
+        <set value='1287'/>
+        <set value='1856'/>
+        <set value='1126'/>
+        <set value='987'/>
+        <set value='1610'/>
+        <set value='903'/>
+        <set value='928'/>
+        <set value='500'/>
+        <set value='600'/>
+    </dataset>
+    <dataset lineThickness='3' seriesName='YY' parentYAxis='S'>
+        <set value='174'/>
+        <set value='197'/>
+        <set value='155'/>
+        <set value='15'/>
+        <set value='66'/>
+        <set value='85'/>
+        <set value='37'/>
+        <set value='10'/>
+        <set value='44'/>
+        <set value='322'/>
+        <set value='200'/>
+        <set value='100'/>
+    </dataset>
+</chart>

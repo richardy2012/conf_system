@@ -1,0 +1,8 @@
+User-agent:*
+Disallow:/application/
+Disallow:/public/
+Disallow:/system/
+Disallow:/user_guide/
+allow:/index.php
+Allow:/html/
+Allow:/index.html

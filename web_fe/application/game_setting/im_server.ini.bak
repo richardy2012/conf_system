@@ -1,0 +1,87 @@
+[general]
+io_thread_size    = 1
+logpath           = /data/logs/
+gamezone          = [3]
+language          = En
+
+[im_server]
+network		  = eth0
+ip                = [replace_imBindIP_1]
+port              = [replace_imBindPort_1]
+accept_queue_size = 250
+
+io_thread_size    = 8
+work_thread_init  = 8
+work_thread_high  = 32
+work_thread_load  = 500
+
+handler_pool_init = 1000
+handler_pool_low  = 0
+handler_pool_high = 5000
+handler_pool_inc  = 500
+handler_pool_max  = 50000
+
+read_buffer_size  = 2048
+write_buffer_size = 2048
+session_timeout   = 0
+io_timeout        = 60
+
+[im_master]
+ip                = 127.0.0.1
+port              = 9300
+read_buffer_size  = 1024
+write_buffer_size = 1024
+session_timeout   = 0
+io_timeout        = 60
+retry_timeout     = 30
+keepalive_timeout = 30
+
+[loginbalancer]
+ip                = replace_im_bind_lb
+port              = [replace_lbBindPort_2]
+read_buffer_size  = 1024
+write_buffer_size = 1024
+session_timeout   = 0
+io_timeout        = 60
+retry_timeout     = 30
+keepalive_timeout = 30
+
+[thrift_phpservice]
+type              = http
+address           = http://PHP-SERVER:8784/main.php?stream=
+port              = 9090
+connect_timeout   = 10
+receive_timeout   = 10
+send_timeout      = 10
+read_buffer_size  = 10240
+write_buffer_size = 10240
+pool_init         = 4
+pool_low          = 0
+pool_high         = 8
+pool_inc          = 2
+pool_max          = 16
+
+[thrift_cppservice]
+ip                = [replace_imBindIP_2]
+port              = [replace_imBindPort_2]
+accept_timeout    = 10000
+receive_timeout   = 10000
+send_timeout      = 10000
+retry_limit       = 3
+retry_delay       = 3000
+tcp_send_buffer   = 2048
+tcp_recv_buffer   = 2048
+
+[monitor]
+ip                = 127.0.0.1
+port              = 9010
+read_buffer_size  = 1024
+write_buffer_size = 1024
+session_timeout   = 0
+io_timeout        = 60
+retry_timeout     = 30
+keepalive_timeout = 30
+
+[redis]
+ip                = REDIS-SYSDB-SERVER
+port              = 6379
