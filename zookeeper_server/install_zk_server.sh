@@ -32,3 +32,4 @@ make && make install
 cp /usr/local/zookeeper-3.3.6/conf/zoo_sample.cfg /usr/local/zookeeper-3.3.6/conf/zoo.cfg
 sed -i '/^dataDir/c \dataDir=\/data\/zookeeper-data' /usr/local/zookeeper-3.3.6/conf/zoo.cfg
 
+/usr/local/zookeeper/bin/zkServer.sh start
