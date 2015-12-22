@@ -21,7 +21,7 @@ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.3.6/zookeeper-3.3.6.t
 
 tar -xzf zookeeper-3.3.6.tar.gz -C /usr/local/
 
-[ !-d /data/zookeeper-data ] && mkdir -p /data/zookeeper-data
+[ ! -d /data/zookeeper-data ] && mkdir -p /data/zookeeper-data
 
 cd /usr/local/src/zookeeper-3.3.6/src/c
 
